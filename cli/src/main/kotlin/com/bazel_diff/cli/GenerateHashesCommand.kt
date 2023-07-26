@@ -118,6 +118,13 @@ class GenerateHashesCommand : Callable<Int> {
     )
     var ignoredRuleHashingAttributes: Set<String> = emptySet()
 
+    @CommandLine.Option(
+        names =  ["-d", "--depth"],
+        description = ["Maximum depth to propagate hashes in tree"],
+        defaultValue = CommandLine.Parameters.NULL_VALUE
+    )
+    var depthLimit: Int? = null
+
     @CommandLine.Spec
     lateinit var spec: CommandLine.Model.CommandSpec
 
@@ -136,6 +143,7 @@ class GenerateHashesCommand : Callable<Int> {
                     useCquery,
                     keepGoing,
                     fineGrainedHashExternalRepos,
+                    depthLimit,
                 ),
                 loggingModule(parent.verbose),
                 serialisationModule(),
