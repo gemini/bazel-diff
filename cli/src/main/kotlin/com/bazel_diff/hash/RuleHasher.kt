@@ -63,7 +63,7 @@ class RuleHasher(private val useCquery: Boolean, private val fineGrainedHashExte
                             seedHash,
                             depPathClone,
                             ignoredAttrs,
-                            depth
+                            depth?.minus(1)
                         )
                         safePutBytes(ruleInputHash)
                     }
